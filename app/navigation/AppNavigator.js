@@ -9,6 +9,7 @@ import Map from '../components/Map'
 
 const Tab = createBottomTabNavigator()
 
+//Tomorrow work on each component
 const AppNavigator = () => (
     <Tab.Navigator>
         <Tab.Screen
