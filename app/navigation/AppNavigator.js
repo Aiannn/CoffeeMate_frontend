@@ -2,10 +2,9 @@ import React from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import CreateMeetingScreen from '../screens/CreateMeetingScreen'
-import CoffeeMeetingsScreen from '../screens/CoffeeMeetingsScreen'
-import AccountScreen from '../screens/AccountScreen'
 import CoffeeShopsNavigator from './CoffeeShopsNavigator'
 import Map from '../components/Map'
+import AccountNavigator from './AccountNavigator';
 
 const Tab = createBottomTabNavigator()
 
@@ -26,7 +25,7 @@ const AppNavigator = () => (
             }} />
         <Tab.Screen
             name='Account'
-            component={AccountScreen}
+            component={AccountNavigator}
             options={{
                 tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name='account' color={color} size={size} />
             }} />

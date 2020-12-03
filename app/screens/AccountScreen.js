@@ -1,9 +1,16 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View, Image } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 function AccountScreen(props) {
     return (
         <SafeAreaView style={styles.container}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('settings')}>
+                <View style={styles.settings}>
+                    <MaterialCommunityIcons name='settings' size={30} />
+                </View>
+            </TouchableOpacity>
             <View style={styles.card}>
                 <Image source={require('../../assets/coffee-shop-1.jpg')} style={styles.image} />
                 <Text>Name</Text>
@@ -25,6 +32,9 @@ const styles = StyleSheet.create({
     image: {
         width: 300,
         height: 300
+    },
+    settings: {
+        alignItems: 'flex-end'
     }
 });
 
