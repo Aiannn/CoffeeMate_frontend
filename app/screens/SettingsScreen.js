@@ -4,10 +4,11 @@ import { View, StyleSheet, SafeAreaView, Text } from 'react-native';
 function SettingsScreen(props) {
     return (
         <SafeAreaView>
-            <Text>Setting 1</Text>
-            <Text>Setting 2</Text>
-            <Text>Setting 3</Text>
-            <Text>Setting 4</Text>
+            <Text>Edit profile</Text>
+            <Text>General</Text>
+            <Text>Change theme</Text>
+            <Text>About</Text>
+            <Text>Sigh out</Text>
         </SafeAreaView>
     );
 }
