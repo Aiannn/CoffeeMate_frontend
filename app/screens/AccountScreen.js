@@ -16,6 +16,8 @@ function AccountScreen(props) {
                 <Text>Name</Text>
                 <Text>Age</Text>
                 <Text>Sex</Text>
+                <Text>Meetings:</Text>
+                <Text>Rating:</Text>
             </View>
         </SafeAreaView>
     );
