@@ -5,6 +5,7 @@ import CreateMeetingScreen from '../screens/CreateMeetingScreen'
 import CoffeeShopsNavigator from './CoffeeShopsNavigator'
 import Map from '../components/Map'
 import AccountNavigator from './AccountNavigator';
+import { TextBase } from 'react-native';
 
 const Tab = createBottomTabNavigator()
 
@@ -37,5 +38,6 @@ const AppNavigator = () => (
             }} />
     </Tab.Navigator>
 )
+
 
 export default AppNavigator
