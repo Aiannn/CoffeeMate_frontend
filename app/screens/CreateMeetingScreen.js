@@ -1,7 +1,7 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, Button, TextInput, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, Button, TextInput, View, Alert } from 'react-native';
 
-/
+
 class CreateMeetingScreen extends React.Component() {
 
     state = {
@@ -9,14 +9,14 @@ class CreateMeetingScreen extends React.Component() {
         Time: '',
         Duration: 0
     }
-
+    //Something is not working!! refactor tomorrow
     handlePress = () => {
-        alert.alert(this.state.Coffeeshop, this.state.Time, this.state.Duration)
+        Alert.alert(this.state.Coffeeshop)
     }
 
-    handleChange = (e) => {
+    handleChange = () => {
         this.setState({
-            [e.target.title]: e.target.value
+            Coffeeshop: this.state.Coffeeshop
         })
     }
 
@@ -32,7 +32,7 @@ class CreateMeetingScreen extends React.Component() {
                     <Text>duration:</Text>
                     <TextInput value={this.state.Duration} title='Duration' placeholder='enter duration' onChangeText={this.handleChange} />
                 </View>
-                <Button title='Create' onPress={handlePress} />
+                <Button title='Create' onPress={this.handlePress} />
             </SafeAreaView>
         )
     }
