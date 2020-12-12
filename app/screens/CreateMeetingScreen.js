@@ -17,6 +17,7 @@ class CreateMeetingScreen extends React.Component() {
     handleChange = () => {
         this.setState({
             Coffeeshop: this.state.Coffeeshop
+            //[e.target.title]: e.target.value  || what is event analogy in React Native
         })
     }
 
