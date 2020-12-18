@@ -19,10 +19,12 @@ const AppNavigator = () => (
                 tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name='plus-circle-outline' color={color} size={size} />
             }} />
         <Tab.Screen
-            name='Coffee Meetings'
+            // name='Coffee Meetings'
+            name='Meetings'
             component={CoffeeShopsNavigator}
             options={{
-                tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name='coffee' color={color} size={size} />
+                // tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name='coffee' color={color} size={size} />
+                tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name='home' color={color} size={size} />
             }} />
         <Tab.Screen
             name='Account'
@@ -31,7 +33,8 @@ const AppNavigator = () => (
                 tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name='account' color={color} size={size} />
             }} />
         <Tab.Screen
-            name='CoffeeMap'
+            // name='CoffeeMap'
+            name='Map'
             component={Map}
             options={{
                 tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name='map' color={color} size={size} />
