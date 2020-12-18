@@ -1,6 +1,7 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, Button, TextInput, View, Alert } from 'react-native';
 
+// import ReactNativeComponentTree from 'react-native/Libraries/Renderer/src/renderers/native/ReactNativeComponentTree'
 
 class CreateMeetingScreen extends React.Component {
 
@@ -10,29 +11,28 @@ class CreateMeetingScreen extends React.Component {
         Duration: 0
     }
     //Something is not working!! refactor tomorrow
-    // handlePress = () => {
-    //     Alert.alert(this.state.Coffeeshop)
-    // }
+    handlePress = () => {
+        Alert.alert(this.state.Coffeeshop)
+    }
 
-    // handleChange = () => {
-    //     this.setState({
-    //         Coffeeshop: this.state.Coffeeshop
-    //         //[e.target.title]: e.target.value  || what is event analogy in React Native
-    //     })
-    // }
+    handleChange = (e) => {
+        this.setState({
+            [e.currentTarget.title]: e.currentTarget.value
+        })
+    }
     render() {
         return (
             <SafeAreaView style={styles.container}>
                 <Text>Create new Meeting</Text>
                 <View style={styles.form}>
                     <Text>Coffeeshop:</Text>
-                    <TextInput title='Coffeeshop' placeholder='enter coffeeshop' />
+                    <TextInput value={this.state.Coffeeshop} title='Coffeeshop' placeholder='enter coffeeshop' onChangeText={this.handleChange} />
                     <Text>Time:</Text>
                     <TextInput title='Time' placeholder='enter time' />
                     <Text>duration:</Text>
                     <TextInput title='Duration' placeholder='enter duration' />
                 </View>
-                <Button title='Create' />
+                <Button title='Create' onPress={this.handlePress} />
             </SafeAreaView>
         )
     }
