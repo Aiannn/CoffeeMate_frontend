@@ -12,7 +12,7 @@ class CreateMeetingScreen extends React.Component {
     }
     //Something is not working!! refactor tomorrow
     handlePress = () => {
-        Alert.alert(this.state.Coffeeshop)
+        Alert.alert(this.state.Coffeeshop, this.state.Time)
     }
 
     handleChange = (e) => {
