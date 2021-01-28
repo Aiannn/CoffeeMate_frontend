@@ -1,49 +1,132 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet, Text, Button, TextInput, View, Alert } from 'react-native';
+import React, { useState, useEffect, useReducer } from 'react';
+import { SafeAreaView, Dimensions, StyleSheet, Text, Button, TextInput, View, Alert, ScrollView } from 'react-native';
 
-// import ReactNativeComponentTree from 'react-native/Libraries/Renderer/src/renderers/native/ReactNativeComponentTree'
+import DateTimePicker from '@react-native-community/datetimepicker'
 
-class CreateMeetingScreen extends React.Component {
+import MapView, { Marker, Callout } from 'react-native-maps'
 
-    state = {
-        Coffeeshop: '',
-        Time: '',
-        Duration: 0
-    }
-    //Something is not working!! refactor tomorrow
-    handlePress = () => {
-        Alert.alert(this.state.Coffeeshop, this.state.Time, this.state.Duration)
+let { height, width } = Dimensions.get('window')
+
+function CreateMeetingScreen() {
+
+    const [location, setLocation] = useState() //I should use location state to set up initial Region
+
+    const getLocation = async () => {
+        const { granted } = await Location.requestPermissionsAsync()
+        if (!granted) return
+        const { coords: { latitude, longitude } } = await Location.getLastKnownPositionAsync()
+        setLocation({ latitude, longitude })
     }
 
-    handleChange = (e) => {
-        this.setState({
-            [e.currentTarget.title]: e.currentTarget.value
-        })
+    useEffect(() => {
+        getLocation()
+    }, [])
+
+    const [marker, setMarker] = useState()
+
+    const handlePress = (e) => {
+        setMarker(e.nativeEvent.coordinate)
     }
-    render() {
-        return (
-            <SafeAreaView style={styles.container}>
-                <Text>Create new Meeting</Text>
-                <View style={styles.form}>
-                    <Text>Coffeeshop:</Text>
-                    <TextInput value={this.state.Coffeeshop} title='Coffeeshop' placeholder='enter coffeeshop' onChangeText={this.handleChange} />
-                    <Text>Time:</Text>
-                    <TextInput title='Time' placeholder='enter time' />
-                    <Text>duration:</Text>
-                    <TextInput title='Duration' placeholder='enter duration' />
-                </View>
-                <Button title='Create' onPress={this.handlePress} />
-            </SafeAreaView>
-        )
-    }
+
+    const [time, setTime] = useState()
+    const [duration, setDuration] = useState()
+
+    // const submitHandler = () => {
+    //     fetch('http://localhost:3000/meetings', {
+    //         method: 'POST',
+    //         headers: {
+    //             'accept': 'application/json',
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             longitude: marker.longitude,
+    //             latitude: marker.latitude,
+    //             time: 
+    //         })
+    //     })
+    // }
+
+    //////DATETIMEPICKER BLOCK
+    const [date, setDate] = useState(new Date(1598051730000));
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
+
+    const onChange = (selectedDate) => {
+        const currentDate = selectedDate || date;
+        // setShow(Platform.OS === 'ios');
+        setDate(currentDate);
+    };
+
+    const showMode = (currentMode) => {
+        setShow(true);
+        setMode(currentMode);
+    };
+
+    const showDatepicker = () => {
+        showMode('date');
+    };
+
+    const showTimepicker = () => {
+        showMode('time');
+    };
+    ///////////
+
+
+    return (
+        <SafeAreaView style={styles.container}>
+            <MapView
+                style={styles.map}
+                onPress={handlePress}
+                initialRegion={{
+                    latitude: 40.730610,
+                    longitude: -73.935242,
+                    // latitude: location.latitude,
+                    // longitude: location.longitude,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421
+                }}>
+                <Marker
+                    coordinate={marker}
+                    title='Meeting'
+                >
+                    <Callout style={{ flex: 1, position: 'relative', height: 400, width: 250 }}>
+                        {/* <TextInput defaultValue={time} onChangeText={text => setTime(text)} placeholder='Time' title='Time' />
+                        <TextInput defaultValue={duration} onChangeText={text => setDuration(text)} placeholder='Duration' title='Duration' /> */}
+                        <View>
+                            <View>
+                                <Button onPress={showDatepicker} title="Show date picker!" />
+                            </View>
+                            <View>
+                                <Button onPress={showTimepicker} title="Show time picker!" />
+                            </View>
+                            {show && (
+                                // <ScrollView>
+                                <DateTimePicker
+                                    testID="dateTimePicker"
+                                    value={date}
+                                    mode={mode}
+                                    is24Hour={true}
+                                    display="spinner"
+                                    onChange={selectedDate => onChange(selectedDate)}
+                                />
+                                // </ScrollView>
+                            )}
+                            <Button title='Submit' onPress={() => console.log(marker)} />
+                        </View>
+                    </Callout>
+                </Marker>
+            </MapView>
+        </SafeAreaView>
+    )
 }
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center'
+        height: height,
+        width: width
     },
-    form: {
-        marginTop: 50
+    map: {
+        ...StyleSheet.absoluteFillObject
     }
 });
 

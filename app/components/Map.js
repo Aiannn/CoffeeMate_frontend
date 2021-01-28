@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MapView, { Marker, Callout } from 'react-native-maps'
 import * as Location from 'expo-location'
 
-import { StyleSheet, Dimensions, View, Image, Text } from 'react-native'
+import { SafeAreaView, StyleSheet, Dimensions, View, Image, Text } from 'react-native'
 
 let { height, width } = Dimensions.get('window')
 
@@ -38,7 +38,7 @@ export default function Map() {
     }, [])
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <MapView
                 style={styles.map}
                 initialRegion={{
@@ -53,18 +53,11 @@ export default function Map() {
                         coordinate={marker}
                         title='Coffee'
                         description='Good coffee'
-                    >
-                        <Image style={{ width: 30, height: 30 }} source={require('../../assets/MapMarker.png')} />
-                        <Callout tooltip>
-                            <View style={{ backgroundColor: 'red', width: 60, height: 30 }}>
-                                <Text>Coffee shop</Text>
-                            </View>
-                        </Callout>
-                    </Marker>
+                    />
                 )
                 )}
             </MapView>
-        </View>
+        </SafeAreaView>
     )
 }
 

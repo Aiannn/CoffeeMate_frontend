@@ -13,6 +13,12 @@ const Tab = createBottomTabNavigator()
 const AppNavigator = () => (
     <Tab.Navigator>
         <Tab.Screen
+            name='Map'
+            component={Map}
+            options={{
+                tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name='map' color={color} size={size} />
+            }} />
+        <Tab.Screen
             name='New Meeting'
             component={CreateMeetingScreen}
             options={{
@@ -31,13 +37,6 @@ const AppNavigator = () => (
             component={AccountNavigator}
             options={{
                 tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name='account' color={color} size={size} />
-            }} />
-        <Tab.Screen
-            // name='CoffeeMap'
-            name='Map'
-            component={Map}
-            options={{
-                tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name='map' color={color} size={size} />
             }} />
     </Tab.Navigator>
 )
