@@ -50,6 +50,7 @@ function AccountScreen(props) {
                     <Button onPress={showTimepicker} title="Show time picker!" />
                 </View> */}
                 {show && (
+                    //idk why its not rendering
                     <View>
                         <DateTimePicker
                             testID="dateTimePicker"
