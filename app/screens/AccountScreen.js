@@ -50,7 +50,7 @@ function AccountScreen(props) {
                     <Button onPress={showTimepicker} title="Show time picker!" />
                 </View> */}
                 {show && (
-                    //idk why its not rendering
+                    //idk why its not rendering, but its rendering in newMeetscreen
                     <View>
                         <DateTimePicker
                             testID="dateTimePicker"

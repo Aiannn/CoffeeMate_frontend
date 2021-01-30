@@ -51,7 +51,7 @@ function CreateMeetingScreen() {
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
-    const onChange = (selectedDate) => {
+    const onChange = (e, selectedDate) => {
         const currentDate = selectedDate || date;
         // setShow(Platform.OS === 'ios');
         setDate(currentDate);
@@ -102,7 +102,7 @@ function CreateMeetingScreen() {
                             {show && (
                                 // <ScrollView>
                                 <DateTimePicker
-                                    testID="dateTimePicker"
+                                    // testID="dateTimePicker"
                                     value={date}
                                     mode={mode}
                                     is24Hour={true}
